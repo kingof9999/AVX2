@@ -1,0 +1,1 @@
+<jsp:forward page="/search-J1JR.do"></jsp:forward>
