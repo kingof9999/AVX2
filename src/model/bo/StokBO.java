@@ -22,8 +22,8 @@ import model.dao.StokDAO;
 public class StokBO {
 	StokDAO stokDAO = new StokDAO();
 
-	public ArrayList<Stok> getInfoStok(String iTEMMSTOK,int pagenum) throws Exception {
-		return stokDAO.getInfoStok(iTEMMSTOK,pagenum);
+	public ArrayList<Stok> getInfoStok(String iTEMMSTOK, int pagenum) throws Exception {
+		return stokDAO.getInfoStok(iTEMMSTOK, pagenum);
 	}
 
 	public Stok checkITEMMMKCD(String iTEMMSTOK) throws Exception {

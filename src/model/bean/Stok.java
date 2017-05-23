@@ -1,5 +1,19 @@
 package model.bean;
 
+/**
+ * StokBean
+ * 
+ * Version 3.0
+ * 
+ * Date: 18/05/2017
+ *
+ * Copyright
+ * 
+ * Modification Logs:
+ * DATE				AUTHOR			DECRIPTION
+ * -------------------------------------------
+ * 18/05/2017		TinLQ			Create
+ */
 public class Stok {
 	private String iTEMMSTOK;
 	private String iTEMMSKCD;

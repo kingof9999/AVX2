@@ -32,13 +32,10 @@ public class StokDAO {
 		System.out.println("DAO");
 		// select data from table AUTITEMM, AUTEMPFL, AUTDCCFL
 		String sql = "SELECT *"
-			+" FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
-			+" FROM AUTITEMM, AUTEMPFL, AUTDCCFL"
-			+"  WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
-			+" AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1 "
-			+" AND ITEMM_STOK LIKE '"+iTEMMSTOK+"%'"
-			+" AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))"
-			+" sub WHERE ( ct = "+pagenum+")";
+				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
+				+ " FROM AUTITEMM, AUTEMPFL, AUTDCCFL" + "  WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
+				+ " AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1 " + " AND ITEMM_STOK LIKE '" + iTEMMSTOK + "%'"
+				+ " AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))" + " sub WHERE ( ct = " + pagenum + ")";
 		System.out.println(sql);
 		ResultSet rs;
 		Statement stmt = null;
@@ -84,12 +81,10 @@ public class StokDAO {
 	public ArrayList<Stok> getInfoStok(int pagenum) throws Exception {
 		// select data from table AUTITEMM, AUTEMPFL, AUTDCCFL
 		String sql = String.format("SELECT *"
-						+" FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
-						+" FROM AUTITEMM, AUTEMPFL, AUTDCCFL"
-						+" WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
-						+" AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1"
-						+" AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))"
-						+" sub WHERE ( ct = %s)",pagenum);
+				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
+				+ " FROM AUTITEMM, AUTEMPFL, AUTDCCFL" + " WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
+				+ " AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1" + " AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))"
+				+ " sub WHERE ( ct = %s)", pagenum);
 		ResultSet rs;
 		Statement stmt = null;
 		// catch error and throw

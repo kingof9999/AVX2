@@ -10,6 +10,20 @@ import org.apache.struts.action.ActionMapping;
 
 import model.bean.Stok;
 
+/**
+ * StokForm
+ * 
+ * Version 3.0
+ * 
+ * Date: 18/05/2017
+ *
+ * Copyright
+ * 
+ * Modification Logs:
+ * DATE				AUTHOR			DECRIPTION
+ * -------------------------------------------
+ * 23/05/2017		TinLQ			Create
+ */
 public class StokForm extends ActionForm {
 	private String iTEMMSTOK;
 	private String iTEMMSKCD;
@@ -25,7 +39,7 @@ public class StokForm extends ActionForm {
 	private int iTEMMPART;
 	private ArrayList<Stok> listStok;
 	private int pagenum = 1;
-	
+
 	public int getPagenum() {
 		return pagenum;
 	}

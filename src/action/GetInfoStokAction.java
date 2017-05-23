@@ -39,7 +39,7 @@ public class GetInfoStokAction extends Action {
 			HttpServletResponse response) throws Exception {
 		// call form StokForm to use
 		StokForm stokForm = (StokForm) form;
-		//call session class to use
+		// call session class to use
 		HttpSession session = request.getSession();
 		// call class AcyionErrors to use
 		ActionErrors actionErrors = new ActionErrors();
@@ -59,7 +59,7 @@ public class GetInfoStokAction extends Action {
 			// call iTEMMSTOK from stokForm
 			String iTEMMSTOK = stokForm.getiTEMMSTOK();
 			session.setAttribute("iTEMMSTOK", iTEMMSTOK);
-			//call pagenum from stokForm
+			// call pagenum from stokForm
 			int pagenum = stokForm.getPagenum();
 			// try catch to get message from throw Exception
 			try {
@@ -68,11 +68,11 @@ public class GetInfoStokAction extends Action {
 				} else {
 					System.out.println("pass");
 					// get information of stok
-					listStok = stokBO.getInfoStok(iTEMMSTOK,pagenum);
+					listStok = stokBO.getInfoStok(iTEMMSTOK, pagenum);
 				}
-				//set listStok to form
+				// set listStok to form
 				stokForm.setListStok(listStok);
-				//get iTEMMSTOK in session and set it to iTEMMSTOK
+				// get iTEMMSTOK in session and set it to iTEMMSTOK
 				iTEMMSTOK = (String) session.getAttribute("iTEMMSTOK");
 			} catch (Exception e) {
 				e.printStackTrace();
