@@ -36,34 +36,6 @@
 </head>
 <body>
 	<div class="container">
-		<div class="header">
-			<div class="header-top"></div>
-			<div class="header-bottom"></div>
-			<nav class="navbar navbar-default center-block">
-				<div class="container-fluid">
-					<div class="navbar-header">
-	  					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false">
-					        <span class="sr-only">Toggle navigation</span>
-					        <span class="icon-bar"></span>
-					        <span class="icon-bar"></span>
-					        <span class="icon-bar"></span>
-	  					</button>
-					</div>
-	
-					<div class="collapse navbar-collapse" id="menu-collapse">
-						<ul class="nav navbar-nav">
-							<li><a href="#">私のプロフィール</a></li>
-							<li><a href="#">アカウントコース</a></li>
-							<li><a href="#">アカウント</a></li>
-							<li><a href="#">アカウント証明書</a></li>
-							<li><a href="#">言語スコア</a></li>
-							<li><a href="#">報告する</a></li>
-							<li><a href="#">セキュリティ</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
 		<div class="body">
 			<div class="main-form col-sm-12">
 				<div class="top-text col-sm-12">
@@ -74,7 +46,7 @@
 						<label class="my-label">Ｊ１／ＪＲ情報簡易修正</label>
 					</div>
 					<div class="col-sm-3" style="float: left;">
-						<label id="clock" style="padding-left: 78%;" class="my-label"></label>
+						<label id="clock" style="padding-left: 65%;" class="my-label"></label>
 						<script type="text/javascript"> function refrClock() {
 								var d=new Date();
 								var s=d.getSeconds();
@@ -95,7 +67,7 @@
 									if (h<10) {
 										h="0" + h
 									}
-								   document.getElementById("clock").innerHTML= year + "/" +months[month] + "/" + date; 
+								   document.getElementById("clock").innerHTML= year + "年" +months[month] + "月" + date + "日"; 
 								   setTimeout("refrClock()",1000); } refrClock();
 						</script>
 					</div>
@@ -106,6 +78,9 @@
 					<label style="color: red;margin-left: 50px;">
 						<html:errors property="reloadPageError"/>
 						<html:errors property="updateSuccess"/>
+						<html:errors property="updateHalfSizeError"/>
+						<html:errors property="existError"/>
+						<html:errors property="specialCharError"/>
 					</label>
 				</div>
 				<div class="body-filter col-sm-12" style="height: 80px;">
@@ -125,21 +100,20 @@
 				<div class="body-button col-sm-12">
 					<div style="margin: 10px 0 0 83%;">
 						<html:submit styleClass="m-btn m-btn-success my-btn" style="width: 69px;height: 34px;">検索(S)</html:submit>
-						<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;" onclick="location.href='updateJ1JR.jsp';" value="'キャンセル(C)"/>
+						<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;" onclick="location.href='/AVX2/search-J1JR.do';" value="キャンセル(C)"/>
 					</div>
 				</div>
 				<div class="body-main-top col-sm-12">
 					<div style="margin-left: 15px;">
 						<label class="my-label2">1/24べ ー ジ </label>
-						<button style="margin-left: 5px; background-color: #c0ccd8;"
-							disabled="true">
+						<button id="back" class="m-btn m-btn-success my-btn" style="margin-left: 5px;">
 							<i class="glyphicon glyphicon-arrow-left"></i>
 						</button>
-						<button style="margin: 0 10px 0 10px; background-color: #c0ccd8;">
+						<button id="next" class="m-btn m-btn-success my-btn" style="margin: 0 10px 0 10px;">
 							<i class="glyphicon glyphicon-arrow-right"></i>
 						</button>
 						<label class="my-label2">べ ー ジ</label> 
-						<html:text property="pagenum" style="margin: 0 10px 0 10px; width: 50px;"></html:text>
+						<html:text styleId="pageid" property="pagenum" style="margin: 0 10px 0 10px; width: 50px;"></html:text>
 						<button class="m-btn m-btn-success my-btn">表示</button>
 					</div>
 				</div>
@@ -164,11 +138,6 @@
 													</td>
 													<td style="padding-left: 20px;width: 87%;">
 														<html:text name="st" property="iTEMMSKCD" styleClass="form-control" style="width: 5%;" maxlength="2"></html:text>
-														<label style="color: red;">
-															<html:errors property="updateHalfSizeError"/>
-															<html:errors property="existError"/>
-															<html:errors property="specialCharError"/>
-														</label>
 													</td>
 												</tr>
 												<tr>
@@ -265,8 +234,8 @@
 							</div>
 							<div class="body-button col-sm-12">
 								<div style="margin: 10px 0 0 69%;">
-									<button class="m-btn m-btn-success my-btn" style="width: 69px;height: 34px;margin-left: 10px;">'更新(U)</button>
-									<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;margin-left: 10px;" value="'クリアー(R)"/>
+									<button class="m-btn m-btn-success my-btn" style="width: 69px;height: 34px;margin-left: 10px;">更新(U)</button>
+									<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;margin-left: 10px;" value="クリアー(R)"/>
 									<a onclick="exportF()" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;">エクスポート(E)</a>
 									<a style="display: none" id="downloadLink"></a>
 								</div>
@@ -280,6 +249,18 @@
 		</div>
 	</div>
 </body>
+<script>
+	$( document ).ready(function() {
+		$("#next").click(function(){
+		    var pageid = parseInt($('#pageid').val(), 10);
+		    $("#pageid").val(pageid+1);
+		});
+		$("#back").click(function(){
+		    var pageid = parseInt($('#pageid').val(), 10);
+		    $("#pageid").val(pageid-1);
+		});
+	});
+</script>
 <script>
 	$( document ).ready(function() {
 		var message = $("#message").text();

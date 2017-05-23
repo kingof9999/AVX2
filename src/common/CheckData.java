@@ -58,4 +58,16 @@ public class CheckData {
 		String regex = "[\\p{Alpha}]*[\\p{Punct}][\\p{Alpha}]*";
 		return (str.matches(regex)) ? true : false;
 	}
+	
+	/**
+	 * trim string
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String chuanHoa(String str) {
+		str = str.trim();
+		str = str.replaceAll("\\s+", " ");
+		return str;
+	} 
 }

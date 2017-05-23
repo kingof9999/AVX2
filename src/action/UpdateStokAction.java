@@ -53,7 +53,18 @@ public class UpdateStokAction extends Action {
 			// call iTEMMSKCD from stokForm
 			String iTEMMSKCD = stokForm.getiTEMMSKCD();
 			// check special character or not
-			if (checkData.isSpecial(iTEMMSKCD)) {
+			boolean checkSpeChar = false;
+			try {
+				// check true false for special character
+				checkSpeChar = checkData.isSpecial(iTEMMSKCD);
+			} catch (Exception e) {
+				// add message error
+				actionErrors.add("reloadPageError", new ActionMessage("error.update.reloadPageError"));
+				saveErrors(request, actionErrors);
+				// return to updateJ1JR.jsp
+				return mapping.findForward("upDate");
+			}
+			if (checkSpeChar) {
 				// add message error
 				actionErrors.add("specialCharError", new ActionMessage("error.update.isSpecial"));
 				saveErrors(request, actionErrors);

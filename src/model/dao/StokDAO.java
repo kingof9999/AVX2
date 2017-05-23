@@ -29,14 +29,12 @@ public class StokDAO {
 	Statement stmt;
 
 	public ArrayList<Stok> getInfoStok(String iTEMMSTOK, int pagenum) throws Exception {
-		System.out.println("DAO");
 		// select data from table AUTITEMM, AUTEMPFL, AUTDCCFL
 		String sql = "SELECT *"
 				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
 				+ " FROM AUTITEMM, AUTEMPFL, AUTDCCFL" + "  WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
 				+ " AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1 " + " AND ITEMM_STOK LIKE '" + iTEMMSTOK + "%'"
 				+ " AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))" + " sub WHERE ( ct = " + pagenum + ")";
-		System.out.println(sql);
 		ResultSet rs;
 		Statement stmt = null;
 		// catch error and throw
@@ -74,7 +72,6 @@ public class StokDAO {
 			stmt.close();
 			DBConnection.disConnect();
 		}
-		System.out.println("Done");
 		return list;
 	}
 

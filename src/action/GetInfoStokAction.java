@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+import common.CheckData;
 import common.CheckDbConnection;
 import form.StokForm;
 import model.bean.Stok;
@@ -58,6 +59,22 @@ public class GetInfoStokAction extends Action {
 			Stok stok;
 			// call iTEMMSTOK from stokForm
 			String iTEMMSTOK = stokForm.getiTEMMSTOK();
+			// try catch to catch error while trim
+			try {
+				// check null and "" to trim
+				if (iTEMMSTOK != null && !"".equals(iTEMMSTOK)) {
+					// trim space iTEMSTOK
+					iTEMMSTOK = CheckData.chuanHoa(iTEMMSTOK);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				// add message error
+				actionErrors.add("reloadPageError", new ActionMessage("error.update.reloadPageError"));
+				saveErrors(request, actionErrors);
+				// return to updateJ1JR.jsp
+				return mapping.findForward("loi");
+			}
+			// set session iTEMMSTOK
 			session.setAttribute("iTEMMSTOK", iTEMMSTOK);
 			// call pagenum from stokForm
 			int pagenum = stokForm.getPagenum();
@@ -66,7 +83,6 @@ public class GetInfoStokAction extends Action {
 				if ("".equals(iTEMMSTOK)) {
 					listStok = stokBO.getInfoStok(pagenum);
 				} else {
-					System.out.println("pass");
 					// get information of stok
 					listStok = stokBO.getInfoStok(iTEMMSTOK, pagenum);
 				}
@@ -75,8 +91,6 @@ public class GetInfoStokAction extends Action {
 				// get iTEMMSTOK in session and set it to iTEMMSTOK
 				iTEMMSTOK = (String) session.getAttribute("iTEMMSTOK");
 			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
 				if (e.getMessage() == null) {
 					// add message error
 					actionErrors.add("nullStokError", new ActionMessage("error.getStok.nullValue"));
@@ -87,6 +101,12 @@ public class GetInfoStokAction extends Action {
 					// return updateJ1JR.jsp
 					return mapping.findForward("search");
 				}
+			}
+			// check size of listStok is 0 or not
+			if (listStok.size() == 0) {
+				// add message error
+				actionErrors.add("nullStokError", new ActionMessage("error.getStok.nullValue"));
+				saveErrors(request, actionErrors);
 			}
 			// try catch to get message from throw Exception
 			try {

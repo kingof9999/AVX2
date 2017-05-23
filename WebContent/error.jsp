@@ -64,6 +64,7 @@
 				<label>
 					<html:errors property="dbError"/>
 					<html:errors property="sqlUpdateError"/>
+					<html:errors property="reloadPageError"/>
 				</label>
 			</div>
 		</div>
