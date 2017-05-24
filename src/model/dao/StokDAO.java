@@ -28,12 +28,20 @@ public class StokDAO {
 	Connection conn = DBConnection.getConnect();
 	Statement stmt;
 
+	/**
+	 * get data from database and set to list
+	 * 
+	 * @param iTEMMSTOK
+	 * @param pagenum
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<Stok> getInfoStok(String iTEMMSTOK, int pagenum) throws Exception {
 		// select data from table AUTITEMM, AUTEMPFL, AUTDCCFL
 		String sql = "SELECT *"
-				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
-				+ " FROM AUTITEMM, AUTEMPFL, AUTDCCFL" + "  WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
-				+ " AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1 " + " AND ITEMM_STOK LIKE '" + iTEMMSTOK + "%'"
+				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct,COUNT(1) OVER(ORDER BY ITEMM_HNKB) AS cc, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
+				+ " FROM AUTITEMM, AUTEMPFL, AUTDCCFL" + " WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
+				+ " AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1" + " AND ITEMM_STOK LIKE '" + iTEMMSTOK + "%'"
 				+ " AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))" + " sub WHERE ( ct = " + pagenum + ")";
 		ResultSet rs;
 		Statement stmt = null;
@@ -52,6 +60,7 @@ public class StokDAO {
 			if (rs.next()) {
 				stok = new Stok();
 				// set all element to Stok Bean
+				stok.setAllpage(rs.getInt("cc"));
 				stok.setiTEMMSTOK(rs.getString("ITEMM_STOK"));
 				stok.setiTEMMSKCD(rs.getString("ITEMM_SKCD"));
 				stok.setiTEMMTNTO(rs.getString("ITEMM_TNTO1") + rs.getString("ITEMM_TNTO2"));
@@ -75,10 +84,17 @@ public class StokDAO {
 		return list;
 	}
 
+	/**
+	 * get data from database and set to list
+	 * 
+	 * @param pagenum
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<Stok> getInfoStok(int pagenum) throws Exception {
 		// select data from table AUTITEMM, AUTEMPFL, AUTDCCFL
 		String sql = String.format("SELECT *"
-				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
+				+ " FROM (SELECT ROW_NUMBER() OVER(ORDER BY ITEMM_STOK) AS ct,COUNT(1) OVER(ORDER BY ITEMM_HNKB) AS cc, AUTITEMM.*, AUTEMPFL.EMPFL_EMPNM, AUTDCCFL.DCCFL_NAME"
 				+ " FROM AUTITEMM, AUTEMPFL, AUTDCCFL" + " WHERE AUTEMPFL.EMPFL_EMPNO = AUTITEMM.ITEMM_EMPNO"
 				+ " AND AUTDCCFL.DCCFL_DCCD1 = AUTITEMM.ITEMM_DCCD1" + " AND (ITEMM_HNKB = 0 OR ITEMM_HNKB = 1))"
 				+ " sub WHERE ( ct = %s)", pagenum);
@@ -99,6 +115,7 @@ public class StokDAO {
 			while (rs.next()) {
 				stok = new Stok();
 				// set all element to Stok Bean
+				stok.setAllpage(rs.getInt("cc"));
 				stok.setiTEMMSTOK(rs.getString("ITEMM_STOK"));
 				stok.setiTEMMSKCD(rs.getString("ITEMM_SKCD"));
 				stok.setiTEMMTNTO(rs.getString("ITEMM_TNTO1") + rs.getString("ITEMM_TNTO2"));
@@ -122,6 +139,13 @@ public class StokDAO {
 		return list;
 	}
 
+	/**
+	 * get data from database and set to iTEMMMKCD
+	 * 
+	 * @param iTEMMSTOK
+	 * @return
+	 * @throws Exception
+	 */
 	public Stok checkITEMMMKCD(String iTEMMSTOK) throws Exception {
 		// select data from table AUTITEMM
 		String sql = String.format("SELECT m.MAKER_DATA" + " FROM AUTITEMM i"
@@ -157,6 +181,13 @@ public class StokDAO {
 		return stok;
 	}
 
+	/**
+	 * get data from database and set to iTEMMSYCD
+	 * 
+	 * @param iTEMMSTOK
+	 * @return
+	 * @throws Exception
+	 */
 	public Stok checkITEMMSYCD(String iTEMMSTOK) throws Exception {
 		// select data from table AUTITEMM
 		String sql = String.format("SELECT c.CARNM_NAME" + " FROM AUTITEMM i"
@@ -192,6 +223,14 @@ public class StokDAO {
 		return stok;
 	}
 
+	/**
+	 * get data from database and check it if exist
+	 * 
+	 * @param iTEMMSTOK
+	 * @param iTEMMSKCD
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean isExistITEMMSKCD(String iTEMMSTOK, String iTEMMSKCD) throws Exception {
 		// select data from table AUTITEMM
 		String sql = String.format(
@@ -220,6 +259,13 @@ public class StokDAO {
 		}
 	}
 
+	/**
+	 * update value to database
+	 * 
+	 * @param iTEMMSTOK
+	 * @param iTEMMSKCD
+	 * @throws Exception
+	 */
 	public void updateInfoStok(String iTEMMSTOK, String iTEMMSKCD) throws Exception {
 		// insert data to table
 		String sql = String.format("UPDATE AUTITEMM SET ITEMM_SKCD = '%s' WHERE ITEMM_STOK = '%s'", iTEMMSKCD,

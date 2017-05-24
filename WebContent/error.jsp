@@ -1,16 +1,16 @@
 <!-- 
 	* error.jsp
 	*
-	* version 1.0
+	* version 2.0
 	*
-	* Date: 07/04/2017
+	* Date: 18/05/2017
  	*
  	* Copyright
  	* 
  	* Modification Logs:
  	* DATE				AUTHOR			DECRIPTION
  	* -------------------------------------------
- 	* 07/05/2017		TinLQ			Create
+ 	* 19/05/2017		TinLQ			Create
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

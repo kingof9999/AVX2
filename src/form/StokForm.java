@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 
+import common.CheckData;
 import model.bean.Stok;
 
 /**
@@ -39,6 +40,22 @@ public class StokForm extends ActionForm {
 	private int iTEMMPART;
 	private ArrayList<Stok> listStok;
 	private int pagenum = 1;
+	private int allpage;
+
+	/**
+	 * @return the allpage
+	 */
+	public int getAllpage() {
+		return allpage;
+	}
+
+	/**
+	 * @param allpage
+	 *            the allpage to set
+	 */
+	public void setAllpage(int allpage) {
+		this.allpage = allpage;
+	}
 
 	/**
 	 * @return the iTEMMSTOK
@@ -52,7 +69,7 @@ public class StokForm extends ActionForm {
 	 *            the iTEMMSTOK to set
 	 */
 	public void setiTEMMSTOK(String iTEMMSTOK) {
-		this.iTEMMSTOK = iTEMMSTOK;
+		this.iTEMMSTOK = CheckData.chuanHoa(iTEMMSTOK);
 	}
 
 	/**

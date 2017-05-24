@@ -27,6 +27,22 @@ public class Stok {
 	private String iTEMMSYCD;
 	private String iTEMMTNKMK;
 	private int iTEMMPART;
+	private int allpage;
+
+	/**
+	 * @return the allpage
+	 */
+	public int getAllpage() {
+		return allpage;
+	}
+
+	/**
+	 * @param allpage
+	 *            the allpage to set
+	 */
+	public void setAllpage(int allpage) {
+		this.allpage = allpage;
+	}
 
 	/**
 	 * @return the iTEMMSTOK
