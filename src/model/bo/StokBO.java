@@ -76,8 +76,8 @@ public class StokBO {
 	 * @param iTEMMSKCD
 	 * @throws Exception
 	 */
-	public void updateInfoStok(String iTEMMSTOK, String iTEMMSKCD) throws Exception {
-		stokDAO.updateInfoStok(iTEMMSTOK, iTEMMSKCD);
+	public boolean updateInfoStok(String iTEMMSTOK, String iTEMMSKCD) throws Exception {
+		return stokDAO.updateInfoStok(iTEMMSTOK, iTEMMSKCD);
 	}
 
 	/**

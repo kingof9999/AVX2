@@ -61,15 +61,15 @@ public class StokDAO {
 				stok = new Stok();
 				// set all element to Stok Bean
 				stok.setAllpage(rs.getInt("cc"));
-				stok.setiTEMMSTOK(rs.getString("ITEMM_STOK"));
-				stok.setiTEMMSKCD(rs.getString("ITEMM_SKCD"));
-				stok.setiTEMMTNTO(rs.getString("ITEMM_TNTO1") + rs.getString("ITEMM_TNTO2"));
-				stok.seteMPFLEMPNM(rs.getString("EMPFL_EMPNM"));
-				stok.setdCCFLNAME(rs.getString("DCCFL_NAME"));
-				stok.setiTEMMHNME(rs.getString("ITEMM_HNME"));
-				stok.setiTEMMMKCD(rs.getString("ITEMM_MKCD"));
-				stok.setiTEMMSYCD(rs.getString("ITEMM_SYCD"));
-				stok.setiTEMMTNKMK(rs.getString("ITEMM_TNKMK"));
+				stok.setiTEMMSTOK(rs.getString("ITEMM_STOK").trim());
+				stok.setiTEMMSKCD(rs.getString("ITEMM_SKCD").trim());
+				stok.setiTEMMTNTO(rs.getString("ITEMM_TNTO1").trim() + rs.getString("ITEMM_TNTO2").trim());
+				stok.seteMPFLEMPNM(rs.getString("EMPFL_EMPNM").trim());
+				stok.setdCCFLNAME(rs.getString("DCCFL_NAME").trim());
+				stok.setiTEMMHNME(rs.getString("ITEMM_HNME").trim());
+				stok.setiTEMMMKCD(rs.getString("ITEMM_MKCD").trim());
+				stok.setiTEMMSYCD(rs.getString("ITEMM_SYCD").trim());
+				stok.setiTEMMTNKMK(rs.getString("ITEMM_TNKMK").trim());
 				stok.setiTEMMPART(rs.getInt("ITEMM_PART"));
 				list.add(stok);
 			}
@@ -116,19 +116,20 @@ public class StokDAO {
 				stok = new Stok();
 				// set all element to Stok Bean
 				stok.setAllpage(rs.getInt("cc"));
-				stok.setiTEMMSTOK(rs.getString("ITEMM_STOK"));
-				stok.setiTEMMSKCD(rs.getString("ITEMM_SKCD"));
-				stok.setiTEMMTNTO(rs.getString("ITEMM_TNTO1") + rs.getString("ITEMM_TNTO2"));
-				stok.seteMPFLEMPNM(rs.getString("EMPFL_EMPNM"));
-				stok.setdCCFLNAME(rs.getString("DCCFL_NAME"));
-				stok.setiTEMMHNME(rs.getString("ITEMM_HNME"));
-				stok.setiTEMMMKCD(rs.getString("ITEMM_MKCD"));
-				stok.setiTEMMSYCD(rs.getString("ITEMM_SYCD"));
-				stok.setiTEMMTNKMK(rs.getString("ITEMM_TNKMK"));
+				stok.setiTEMMSTOK(rs.getString("ITEMM_STOK").trim());
+				stok.setiTEMMSKCD(rs.getString("ITEMM_SKCD").trim());
+				stok.setiTEMMTNTO(rs.getString("ITEMM_TNTO1").trim() + rs.getString("ITEMM_TNTO2").trim());
+				stok.seteMPFLEMPNM(rs.getString("EMPFL_EMPNM").trim());
+				stok.setdCCFLNAME(rs.getString("DCCFL_NAME").trim());
+				stok.setiTEMMHNME(rs.getString("ITEMM_HNME").trim());
+				stok.setiTEMMMKCD(rs.getString("ITEMM_MKCD").trim());
+				stok.setiTEMMSYCD(rs.getString("ITEMM_SYCD").trim());
+				stok.setiTEMMTNKMK(rs.getString("ITEMM_TNKMK").trim());
 				stok.setiTEMMPART(rs.getInt("ITEMM_PART"));
 				list.add(stok);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new Exception("Error occur: " + e.getMessage());
 		} finally {
 			// close all connect
@@ -264,17 +265,20 @@ public class StokDAO {
 	 * 
 	 * @param iTEMMSTOK
 	 * @param iTEMMSKCD
+	 * @return
 	 * @throws Exception
 	 */
-	public void updateInfoStok(String iTEMMSTOK, String iTEMMSKCD) throws Exception {
+	public boolean updateInfoStok(String iTEMMSTOK, String iTEMMSKCD) throws Exception {
 		// insert data to table
 		String sql = String.format("UPDATE AUTITEMM SET ITEMM_SKCD = '%s' WHERE ITEMM_STOK = '%s'", iTEMMSKCD,
 				iTEMMSTOK);
+		int rs;
 		Statement stmt = null;
 		// catch error and throw
 		try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
+			rs = stmt.executeUpdate(sql);
+			return (rs == 1);
 		} catch (Exception e) {
 			// throw exception if error
 			throw new Exception("Error occur: " + e.getMessage());

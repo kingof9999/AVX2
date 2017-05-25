@@ -282,6 +282,12 @@
 	}else{
 		$("#setallpage").text(allpage);
 	}
+	if(pageid == 1){
+		$("#back").attr('disabled','disabled');
+	}
+	if(allpage == pageid){
+		$("#next").attr('disabled','disabled');
+	}
 	/*if(pageid > allpage){
 		pageid = pageid - 1;
 		$("#pageid").val(pageid);

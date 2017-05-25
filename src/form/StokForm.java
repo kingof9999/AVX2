@@ -26,6 +26,10 @@ import model.bean.Stok;
  * 23/05/2017		TinLQ			Create
  */
 public class StokForm extends ActionForm {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3356867640757256579L;
 	private String iTEMMSTOK;
 	private String iTEMMSKCD;
 	private String iTEMMTNTO;

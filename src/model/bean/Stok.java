@@ -15,6 +15,7 @@ package model.bean;
  * 18/05/2017		TinLQ			Create
  */
 public class Stok {
+	private int allpage;
 	private String iTEMMSTOK;
 	private String iTEMMSKCD;
 	private String iTEMMTNTO;
@@ -27,7 +28,45 @@ public class Stok {
 	private String iTEMMSYCD;
 	private String iTEMMTNKMK;
 	private int iTEMMPART;
-	private int allpage;
+	
+	/**
+	 * 
+	 */
+	public Stok(){
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param allpage
+	 * @param iTEMMSTOK
+	 * @param iTEMMSKCD
+	 * @param iTEMMTNTO
+	 * @param eMPFLEMPNM
+	 * @param dCCFLNAME
+	 * @param iTEMMHNME
+	 * @param mAKERDATA
+	 * @param iTEMMMKCD
+	 * @param cARNMNAME
+	 * @param iTEMMSYCD
+	 * @param iTEMMTNKMK
+	 * @param iTEMMPART
+	 */
+	public Stok(int allpage, String iTEMMSTOK, String iTEMMSKCD, String iTEMMTNTO, String eMPFLEMPNM, String dCCFLNAME,
+			String iTEMMHNME, String iTEMMMKCD, String iTEMMSYCD, String iTEMMTNKMK,
+			int iTEMMPART) {
+		super();
+		this.allpage = allpage;
+		this.iTEMMSTOK = iTEMMSTOK;
+		this.iTEMMSKCD = iTEMMSKCD;
+		this.iTEMMTNTO = iTEMMTNTO;
+		this.eMPFLEMPNM = eMPFLEMPNM;
+		this.dCCFLNAME = dCCFLNAME;
+		this.iTEMMHNME = iTEMMHNME;
+		this.iTEMMMKCD = iTEMMMKCD;
+		this.iTEMMSYCD = iTEMMSYCD;
+		this.iTEMMTNKMK = iTEMMTNKMK;
+		this.iTEMMPART = iTEMMPART;
+	}
 
 	/**
 	 * @return the allpage
