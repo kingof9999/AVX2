@@ -69,19 +69,19 @@ public class StokDAOTest {
 	protected String test2Actual;
 	protected String test3Actual;
 	protected String testActual;
-	protected ArrayList<Stok> list11Actual;
-	protected ArrayList<Stok> list12Actual;
-	protected ArrayList<Stok> list13Actual;
-	protected ArrayList<Stok> list14Actual;
-	protected ArrayList<Stok> list10Actual;
-	protected ArrayList<Stok> list130Actual;
-	protected ArrayList<Stok> list1minus30Actual;
-	protected ArrayList<Stok> list2minus30Actual;
-	protected ArrayList<Stok> list20Actual;
-	protected ArrayList<Stok> list21Actual;
-	protected ArrayList<Stok> list22Actual;
-	protected ArrayList<Stok> list23Actual;
-	protected ArrayList<Stok> list23AActual;
+	protected ArrayList<Stok> list11Expected;
+	protected ArrayList<Stok> list12Expected;
+	protected ArrayList<Stok> list13Expected;
+	protected ArrayList<Stok> list14Expected;
+	protected ArrayList<Stok> list10Expected;
+	protected ArrayList<Stok> list130Expected;
+	protected ArrayList<Stok> list1minus30Expected;
+	protected ArrayList<Stok> list2minus30Expected;
+	protected ArrayList<Stok> list20Expected;
+	protected ArrayList<Stok> list21Expected;
+	protected ArrayList<Stok> list22Expected;
+	protected ArrayList<Stok> list23Expected;
+	protected ArrayList<Stok> list23AExpected;
 	protected boolean testUpdate1;
 	protected boolean testUpdate2;
 	protected boolean testUpdate3;
@@ -206,27 +206,27 @@ public class StokDAOTest {
 		test2Actual = "B";
 		test3Actual = "C";
 		testActual = "指定無し";
-		list11Actual = new ArrayList<>();
-		list11Actual.add(new Stok(4, "1", "A", "AA", "A", "A", "A", "1", "1", "A", 1));
-		list12Actual = new ArrayList<>();
-		list12Actual.add(new Stok(4, "2", "B", "BB", "B", "B", "B", "2", "2", "B", 2));
-		list13Actual = new ArrayList<>();
-		list13Actual.add(new Stok(4, "3", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
-		list14Actual = new ArrayList<>();
-		list14Actual.add(new Stok(4, "3A", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
-		list10Actual = new ArrayList<>();
-		list130Actual = new ArrayList<>();
-		list1minus30Actual = new ArrayList<>();
-		list2minus30Actual = new ArrayList<>();
-		list20Actual = new ArrayList<>();
-		list21Actual = new ArrayList<>();
-		list21Actual.add(new Stok(1, "1", "A", "AA", "A", "A", "A", "1", "1", "A", 1));
-		list22Actual = new ArrayList<>();
-		list22Actual.add(new Stok(1, "2", "B", "BB", "B", "B", "B", "2", "2", "B", 2));
-		list23Actual = new ArrayList<>();
-		list23Actual.add(new Stok(2, "3", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
-		list23AActual = new ArrayList<>();
-		list23AActual.add(new Stok(1, "3A", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
+		list11Expected = new ArrayList<>();
+		list11Expected.add(new Stok(4, "1", "A", "AA", "A", "A", "A", "1", "1", "A", 1));
+		list12Expected = new ArrayList<>();
+		list12Expected.add(new Stok(4, "2", "B", "BB", "B", "B", "B", "2", "2", "B", 2));
+		list13Expected = new ArrayList<>();
+		list13Expected.add(new Stok(4, "3", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
+		list14Expected = new ArrayList<>();
+		list14Expected.add(new Stok(4, "3A", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
+		list10Expected = new ArrayList<>();
+		list130Expected = new ArrayList<>();
+		list1minus30Expected = new ArrayList<>();
+		list2minus30Expected = new ArrayList<>();
+		list20Expected = new ArrayList<>();
+		list21Expected = new ArrayList<>();
+		list21Expected.add(new Stok(1, "1", "A", "AA", "A", "A", "A", "1", "1", "A", 1));
+		list22Expected = new ArrayList<>();
+		list22Expected.add(new Stok(1, "2", "B", "BB", "B", "B", "B", "2", "2", "B", 2));
+		list23Expected = new ArrayList<>();
+		list23Expected.add(new Stok(2, "3", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
+		list23AExpected = new ArrayList<>();
+		list23AExpected.add(new Stok(1, "3A", "C", "CC", "C", "C", "C", "3", "3", "C", 3));
 	}
 
 	/**
@@ -234,27 +234,10 @@ public class StokDAOTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	/**
-	 * Test JUnit method checkITEMMMKCD(String iTEMMSTOK)
-	 * 
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testCheckITEMMMKCD() throws Exception {
-		// test if database have data
-		assertEquals(testActual, testminus30ITEMMMKCDExpected);
-		assertEquals(testActual, test0ITEMMMKCDExpected);
-		assertEquals(test1Actual, test1ITEMMMKCDExpected);
-		assertEquals(test2Actual, test2ITEMMMKCDExpected);
-		assertEquals(test3Actual, test3ITEMMMKCDExpected);
-		assertEquals(testActual, test4ITEMMMKCDExpected);
-		assertEquals(testActual, test30ITEMMMKCDExpected);
-		assertEquals(testActual, testNULLITEMMMKCDExpected);
-		// test if connection is connected
-		assertEquals(true, checkConnection);
+		testUpdate3 = instance.updateInfoStok("1", "A");
+		testUpdate4 = instance.updateInfoStok("2", "B");
+		testUpdate5 = instance.updateInfoStok("3", "C");
+		testUpdate6 = instance.updateInfoStok("3A", "C");
 	}
 
 	/**
@@ -263,7 +246,7 @@ public class StokDAOTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testCheckITEMMSYCD() throws Exception {
+	public void test1CheckITEMMSYCD() throws Exception {
 		// test if database have data
 		assertEquals(testActual, testminus30ITEMMSYCDExpected);
 		assertEquals(testActual, test0ITEMMSYCDExpected);
@@ -278,66 +261,87 @@ public class StokDAOTest {
 	}
 
 	/**
+	 * Test JUnit method checkITEMMMKCD(String iTEMMSTOK)
+	 * 
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void test2CheckITEMMMKCD() throws Exception {
+		// test if database have data
+		assertEquals(testActual, testminus30ITEMMMKCDExpected);
+		assertEquals(testActual, test0ITEMMMKCDExpected);
+		assertEquals(test1Actual, test1ITEMMMKCDExpected);
+		assertEquals(test2Actual, test2ITEMMMKCDExpected);
+		assertEquals(test3Actual, test3ITEMMMKCDExpected);
+		assertEquals(testActual, test4ITEMMMKCDExpected);
+		assertEquals(testActual, test30ITEMMMKCDExpected);
+		assertEquals(testActual, testNULLITEMMMKCDExpected);
+		// test if connection is connected
+		assertEquals(true, checkConnection);
+	}
+
+	/**
 	 * Test JUnit method getInfoStok(int pagenum)
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void testGetInfoStok() throws Exception {
+	public void test3With1ParaGetInfoStok() throws Exception {
 		// pagenum = 1
-		assertEquals(list11Actual.get(0).getAllpage(), list11.get(0).getAllpage());
-		assertEquals(list11Actual.get(0).getiTEMMSTOK(), list11.get(0).getiTEMMSTOK());
-		assertEquals(list11Actual.get(0).getiTEMMSKCD(), list11.get(0).getiTEMMSKCD());
-		assertEquals(list11Actual.get(0).getiTEMMTNTO(), list11.get(0).getiTEMMTNTO());
-		assertEquals(list11Actual.get(0).geteMPFLEMPNM(), list11.get(0).geteMPFLEMPNM());
-		assertEquals(list11Actual.get(0).getdCCFLNAME(), list11.get(0).getdCCFLNAME());
-		assertEquals(list11Actual.get(0).getiTEMMHNME(), list11.get(0).getiTEMMHNME());
-		assertEquals(list11Actual.get(0).getiTEMMMKCD(), list11.get(0).getiTEMMMKCD());
-		assertEquals(list11Actual.get(0).getiTEMMSYCD(), list11.get(0).getiTEMMSYCD());
-		assertEquals(list11Actual.get(0).getiTEMMTNKMK(), list11.get(0).getiTEMMTNKMK());
-		assertEquals(list11Actual.get(0).getiTEMMPART(), list11.get(0).getiTEMMPART());
+		assertEquals(list11Expected.get(0).getAllpage(), list11.get(0).getAllpage());
+		assertEquals(list11Expected.get(0).getiTEMMSTOK(), list11.get(0).getiTEMMSTOK());
+		assertEquals(list11Expected.get(0).getiTEMMSKCD(), list11.get(0).getiTEMMSKCD());
+		assertEquals(list11Expected.get(0).getiTEMMTNTO(), list11.get(0).getiTEMMTNTO());
+		assertEquals(list11Expected.get(0).geteMPFLEMPNM(), list11.get(0).geteMPFLEMPNM());
+		assertEquals(list11Expected.get(0).getdCCFLNAME(), list11.get(0).getdCCFLNAME());
+		assertEquals(list11Expected.get(0).getiTEMMHNME(), list11.get(0).getiTEMMHNME());
+		assertEquals(list11Expected.get(0).getiTEMMMKCD(), list11.get(0).getiTEMMMKCD());
+		assertEquals(list11Expected.get(0).getiTEMMSYCD(), list11.get(0).getiTEMMSYCD());
+		assertEquals(list11Expected.get(0).getiTEMMTNKMK(), list11.get(0).getiTEMMTNKMK());
+		assertEquals(list11Expected.get(0).getiTEMMPART(), list11.get(0).getiTEMMPART());
 		// pagenum = 2
-		assertEquals(list12Actual.get(0).getAllpage(), list12.get(0).getAllpage());
-		assertEquals(list12Actual.get(0).getiTEMMSTOK(), list12.get(0).getiTEMMSTOK());
-		assertEquals(list12Actual.get(0).getiTEMMSKCD(), list12.get(0).getiTEMMSKCD());
-		assertEquals(list12Actual.get(0).getiTEMMTNTO(), list12.get(0).getiTEMMTNTO());
-		assertEquals(list12Actual.get(0).geteMPFLEMPNM(), list12.get(0).geteMPFLEMPNM());
-		assertEquals(list12Actual.get(0).getdCCFLNAME(), list12.get(0).getdCCFLNAME());
-		assertEquals(list12Actual.get(0).getiTEMMHNME(), list12.get(0).getiTEMMHNME());
-		assertEquals(list12Actual.get(0).getiTEMMMKCD(), list12.get(0).getiTEMMMKCD());
-		assertEquals(list12Actual.get(0).getiTEMMSYCD(), list12.get(0).getiTEMMSYCD());
-		assertEquals(list12Actual.get(0).getiTEMMTNKMK(), list12.get(0).getiTEMMTNKMK());
-		assertEquals(list12Actual.get(0).getiTEMMPART(), list12.get(0).getiTEMMPART());
+		assertEquals(list12Expected.get(0).getAllpage(), list12.get(0).getAllpage());
+		assertEquals(list12Expected.get(0).getiTEMMSTOK(), list12.get(0).getiTEMMSTOK());
+		assertEquals(list12Expected.get(0).getiTEMMSKCD(), list12.get(0).getiTEMMSKCD());
+		assertEquals(list12Expected.get(0).getiTEMMTNTO(), list12.get(0).getiTEMMTNTO());
+		assertEquals(list12Expected.get(0).geteMPFLEMPNM(), list12.get(0).geteMPFLEMPNM());
+		assertEquals(list12Expected.get(0).getdCCFLNAME(), list12.get(0).getdCCFLNAME());
+		assertEquals(list12Expected.get(0).getiTEMMHNME(), list12.get(0).getiTEMMHNME());
+		assertEquals(list12Expected.get(0).getiTEMMMKCD(), list12.get(0).getiTEMMMKCD());
+		assertEquals(list12Expected.get(0).getiTEMMSYCD(), list12.get(0).getiTEMMSYCD());
+		assertEquals(list12Expected.get(0).getiTEMMTNKMK(), list12.get(0).getiTEMMTNKMK());
+		assertEquals(list12Expected.get(0).getiTEMMPART(), list12.get(0).getiTEMMPART());
 		// pagenum = 3
-		assertEquals(list13Actual.get(0).getAllpage(), list13.get(0).getAllpage());
-		assertEquals(list13Actual.get(0).getiTEMMSTOK(), list13.get(0).getiTEMMSTOK());
-		assertEquals(list13Actual.get(0).getiTEMMSKCD(), list13.get(0).getiTEMMSKCD());
-		assertEquals(list13Actual.get(0).getiTEMMTNTO(), list13.get(0).getiTEMMTNTO());
-		assertEquals(list13Actual.get(0).geteMPFLEMPNM(), list13.get(0).geteMPFLEMPNM());
-		assertEquals(list13Actual.get(0).getdCCFLNAME(), list13.get(0).getdCCFLNAME());
-		assertEquals(list13Actual.get(0).getiTEMMHNME(), list13.get(0).getiTEMMHNME());
-		assertEquals(list13Actual.get(0).getiTEMMMKCD(), list13.get(0).getiTEMMMKCD());
-		assertEquals(list13Actual.get(0).getiTEMMSYCD(), list13.get(0).getiTEMMSYCD());
-		assertEquals(list13Actual.get(0).getiTEMMTNKMK(), list13.get(0).getiTEMMTNKMK());
-		assertEquals(list13Actual.get(0).getiTEMMPART(), list13.get(0).getiTEMMPART());
+		assertEquals(list13Expected.get(0).getAllpage(), list13.get(0).getAllpage());
+		assertEquals(list13Expected.get(0).getiTEMMSTOK(), list13.get(0).getiTEMMSTOK());
+		assertEquals(list13Expected.get(0).getiTEMMSKCD(), list13.get(0).getiTEMMSKCD());
+		assertEquals(list13Expected.get(0).getiTEMMTNTO(), list13.get(0).getiTEMMTNTO());
+		assertEquals(list13Expected.get(0).geteMPFLEMPNM(), list13.get(0).geteMPFLEMPNM());
+		assertEquals(list13Expected.get(0).getdCCFLNAME(), list13.get(0).getdCCFLNAME());
+		assertEquals(list13Expected.get(0).getiTEMMHNME(), list13.get(0).getiTEMMHNME());
+		assertEquals(list13Expected.get(0).getiTEMMMKCD(), list13.get(0).getiTEMMMKCD());
+		assertEquals(list13Expected.get(0).getiTEMMSYCD(), list13.get(0).getiTEMMSYCD());
+		assertEquals(list13Expected.get(0).getiTEMMTNKMK(), list13.get(0).getiTEMMTNKMK());
+		assertEquals(list13Expected.get(0).getiTEMMPART(), list13.get(0).getiTEMMPART());
 		// pagenum = 4
-		assertEquals(list14Actual.get(0).getAllpage(), list14.get(0).getAllpage());
-		assertEquals(list14Actual.get(0).getiTEMMSTOK(), list14.get(0).getiTEMMSTOK());
-		assertEquals(list14Actual.get(0).getiTEMMSKCD(), list14.get(0).getiTEMMSKCD());
-		assertEquals(list14Actual.get(0).getiTEMMTNTO(), list14.get(0).getiTEMMTNTO());
-		assertEquals(list14Actual.get(0).geteMPFLEMPNM(), list14.get(0).geteMPFLEMPNM());
-		assertEquals(list14Actual.get(0).getdCCFLNAME(), list14.get(0).getdCCFLNAME());
-		assertEquals(list14Actual.get(0).getiTEMMHNME(), list14.get(0).getiTEMMHNME());
-		assertEquals(list14Actual.get(0).getiTEMMMKCD(), list14.get(0).getiTEMMMKCD());
-		assertEquals(list14Actual.get(0).getiTEMMSYCD(), list14.get(0).getiTEMMSYCD());
-		assertEquals(list14Actual.get(0).getiTEMMTNKMK(), list14.get(0).getiTEMMTNKMK());
-		assertEquals(list14Actual.get(0).getiTEMMPART(), list14.get(0).getiTEMMPART());
+		assertEquals(list14Expected.get(0).getAllpage(), list14.get(0).getAllpage());
+		assertEquals(list14Expected.get(0).getiTEMMSTOK(), list14.get(0).getiTEMMSTOK());
+		assertEquals(list14Expected.get(0).getiTEMMSKCD(), list14.get(0).getiTEMMSKCD());
+		assertEquals(list14Expected.get(0).getiTEMMTNTO(), list14.get(0).getiTEMMTNTO());
+		assertEquals(list14Expected.get(0).geteMPFLEMPNM(), list14.get(0).geteMPFLEMPNM());
+		assertEquals(list14Expected.get(0).getdCCFLNAME(), list14.get(0).getdCCFLNAME());
+		assertEquals(list14Expected.get(0).getiTEMMHNME(), list14.get(0).getiTEMMHNME());
+		assertEquals(list14Expected.get(0).getiTEMMMKCD(), list14.get(0).getiTEMMMKCD());
+		assertEquals(list14Expected.get(0).getiTEMMSYCD(), list14.get(0).getiTEMMSYCD());
+		assertEquals(list14Expected.get(0).getiTEMMTNKMK(), list14.get(0).getiTEMMTNKMK());
+		assertEquals(list14Expected.get(0).getiTEMMPART(), list14.get(0).getiTEMMPART());
 		// pagenum = 0
-		assertEquals(list10Actual, list10);
+		assertEquals(list10Expected, list10);
 		// pagenum = 30
-		assertEquals(list130Actual, list130);
+		assertEquals(list130Expected, list130);
 		// pagenum = -30
-		assertEquals(list1minus30Actual, list1minus30);
+		assertEquals(list1minus30Expected, list1minus30);
 		// test if connection is connected
 		assertEquals(true, checkConnection);
 	}
@@ -349,59 +353,59 @@ public class StokDAOTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testGetInfoStok2() throws Exception {
+	public void test4With2ParaGetInfoStok() throws Exception {
 		// pagenum = 1, iTEMMSTOK = -30
-		assertEquals(list2minus30Actual, list2minus30);
+		assertEquals(list2minus30Expected, list2minus30);
 		// pagenum = 1, iTEMMSTOK = 0
-		assertEquals(list20Actual, list20);
+		assertEquals(list20Expected, list20);
 		// pagenum = 1, iTEMMSTOK = 1
-		assertEquals(list21Actual.get(0).getAllpage(), list21.get(0).getAllpage());
-		assertEquals(list21Actual.get(0).getiTEMMSTOK(), list21.get(0).getiTEMMSTOK());
-		assertEquals(list21Actual.get(0).getiTEMMSKCD(), list21.get(0).getiTEMMSKCD());
-		assertEquals(list21Actual.get(0).getiTEMMTNTO(), list21.get(0).getiTEMMTNTO());
-		assertEquals(list21Actual.get(0).geteMPFLEMPNM(), list21.get(0).geteMPFLEMPNM());
-		assertEquals(list21Actual.get(0).getdCCFLNAME(), list21.get(0).getdCCFLNAME());
-		assertEquals(list21Actual.get(0).getiTEMMHNME(), list21.get(0).getiTEMMHNME());
-		assertEquals(list21Actual.get(0).getiTEMMMKCD(), list21.get(0).getiTEMMMKCD());
-		assertEquals(list21Actual.get(0).getiTEMMSYCD(), list21.get(0).getiTEMMSYCD());
-		assertEquals(list21Actual.get(0).getiTEMMTNKMK(), list21.get(0).getiTEMMTNKMK());
-		assertEquals(list21Actual.get(0).getiTEMMPART(), list21.get(0).getiTEMMPART());
+		assertEquals(list21Expected.get(0).getAllpage(), list21.get(0).getAllpage());
+		assertEquals(list21Expected.get(0).getiTEMMSTOK(), list21.get(0).getiTEMMSTOK());
+		assertEquals(list21Expected.get(0).getiTEMMSKCD(), list21.get(0).getiTEMMSKCD());
+		assertEquals(list21Expected.get(0).getiTEMMTNTO(), list21.get(0).getiTEMMTNTO());
+		assertEquals(list21Expected.get(0).geteMPFLEMPNM(), list21.get(0).geteMPFLEMPNM());
+		assertEquals(list21Expected.get(0).getdCCFLNAME(), list21.get(0).getdCCFLNAME());
+		assertEquals(list21Expected.get(0).getiTEMMHNME(), list21.get(0).getiTEMMHNME());
+		assertEquals(list21Expected.get(0).getiTEMMMKCD(), list21.get(0).getiTEMMMKCD());
+		assertEquals(list21Expected.get(0).getiTEMMSYCD(), list21.get(0).getiTEMMSYCD());
+		assertEquals(list21Expected.get(0).getiTEMMTNKMK(), list21.get(0).getiTEMMTNKMK());
+		assertEquals(list21Expected.get(0).getiTEMMPART(), list21.get(0).getiTEMMPART());
 		// pagenum = 1, iTEMMSTOK = 2
-		assertEquals(list22Actual.get(0).getAllpage(), list22.get(0).getAllpage());
-		assertEquals(list22Actual.get(0).getiTEMMSTOK(), list22.get(0).getiTEMMSTOK());
-		assertEquals(list22Actual.get(0).getiTEMMSKCD(), list22.get(0).getiTEMMSKCD());
-		assertEquals(list22Actual.get(0).getiTEMMTNTO(), list22.get(0).getiTEMMTNTO());
-		assertEquals(list22Actual.get(0).geteMPFLEMPNM(), list22.get(0).geteMPFLEMPNM());
-		assertEquals(list22Actual.get(0).getdCCFLNAME(), list22.get(0).getdCCFLNAME());
-		assertEquals(list22Actual.get(0).getiTEMMHNME(), list22.get(0).getiTEMMHNME());
-		assertEquals(list22Actual.get(0).getiTEMMMKCD(), list22.get(0).getiTEMMMKCD());
-		assertEquals(list22Actual.get(0).getiTEMMSYCD(), list22.get(0).getiTEMMSYCD());
-		assertEquals(list22Actual.get(0).getiTEMMTNKMK(), list22.get(0).getiTEMMTNKMK());
-		assertEquals(list22Actual.get(0).getiTEMMPART(), list22.get(0).getiTEMMPART());
+		assertEquals(list22Expected.get(0).getAllpage(), list22.get(0).getAllpage());
+		assertEquals(list22Expected.get(0).getiTEMMSTOK(), list22.get(0).getiTEMMSTOK());
+		assertEquals(list22Expected.get(0).getiTEMMSKCD(), list22.get(0).getiTEMMSKCD());
+		assertEquals(list22Expected.get(0).getiTEMMTNTO(), list22.get(0).getiTEMMTNTO());
+		assertEquals(list22Expected.get(0).geteMPFLEMPNM(), list22.get(0).geteMPFLEMPNM());
+		assertEquals(list22Expected.get(0).getdCCFLNAME(), list22.get(0).getdCCFLNAME());
+		assertEquals(list22Expected.get(0).getiTEMMHNME(), list22.get(0).getiTEMMHNME());
+		assertEquals(list22Expected.get(0).getiTEMMMKCD(), list22.get(0).getiTEMMMKCD());
+		assertEquals(list22Expected.get(0).getiTEMMSYCD(), list22.get(0).getiTEMMSYCD());
+		assertEquals(list22Expected.get(0).getiTEMMTNKMK(), list22.get(0).getiTEMMTNKMK());
+		assertEquals(list22Expected.get(0).getiTEMMPART(), list22.get(0).getiTEMMPART());
 		// pagenum = 1, iTEMMSTOK = 3
-		assertEquals(list23Actual.get(0).getAllpage(), list23.get(0).getAllpage());
-		assertEquals(list23Actual.get(0).getiTEMMSTOK(), list23.get(0).getiTEMMSTOK());
-		assertEquals(list23Actual.get(0).getiTEMMSKCD(), list23.get(0).getiTEMMSKCD());
-		assertEquals(list23Actual.get(0).getiTEMMTNTO(), list23.get(0).getiTEMMTNTO());
-		assertEquals(list23Actual.get(0).geteMPFLEMPNM(), list23.get(0).geteMPFLEMPNM());
-		assertEquals(list23Actual.get(0).getdCCFLNAME(), list23.get(0).getdCCFLNAME());
-		assertEquals(list23Actual.get(0).getiTEMMHNME(), list23.get(0).getiTEMMHNME());
-		assertEquals(list23Actual.get(0).getiTEMMMKCD(), list23.get(0).getiTEMMMKCD());
-		assertEquals(list23Actual.get(0).getiTEMMSYCD(), list23.get(0).getiTEMMSYCD());
-		assertEquals(list23Actual.get(0).getiTEMMTNKMK(), list23.get(0).getiTEMMTNKMK());
-		assertEquals(list23Actual.get(0).getiTEMMPART(), list23.get(0).getiTEMMPART());
+		assertEquals(list23Expected.get(0).getAllpage(), list23.get(0).getAllpage());
+		assertEquals(list23Expected.get(0).getiTEMMSTOK(), list23.get(0).getiTEMMSTOK());
+		assertEquals(list23Expected.get(0).getiTEMMSKCD(), list23.get(0).getiTEMMSKCD());
+		assertEquals(list23Expected.get(0).getiTEMMTNTO(), list23.get(0).getiTEMMTNTO());
+		assertEquals(list23Expected.get(0).geteMPFLEMPNM(), list23.get(0).geteMPFLEMPNM());
+		assertEquals(list23Expected.get(0).getdCCFLNAME(), list23.get(0).getdCCFLNAME());
+		assertEquals(list23Expected.get(0).getiTEMMHNME(), list23.get(0).getiTEMMHNME());
+		assertEquals(list23Expected.get(0).getiTEMMMKCD(), list23.get(0).getiTEMMMKCD());
+		assertEquals(list23Expected.get(0).getiTEMMSYCD(), list23.get(0).getiTEMMSYCD());
+		assertEquals(list23Expected.get(0).getiTEMMTNKMK(), list23.get(0).getiTEMMTNKMK());
+		assertEquals(list23Expected.get(0).getiTEMMPART(), list23.get(0).getiTEMMPART());
 		// pagenum = 1, iTEMMSTOK = 3A
-		assertEquals(list23AActual.get(0).getAllpage(), list23A.get(0).getAllpage());
-		assertEquals(list23AActual.get(0).getiTEMMSTOK(), list23A.get(0).getiTEMMSTOK());
-		assertEquals(list23AActual.get(0).getiTEMMSKCD(), list23A.get(0).getiTEMMSKCD());
-		assertEquals(list23AActual.get(0).getiTEMMTNTO(), list23A.get(0).getiTEMMTNTO());
-		assertEquals(list23AActual.get(0).geteMPFLEMPNM(), list23A.get(0).geteMPFLEMPNM());
-		assertEquals(list23AActual.get(0).getdCCFLNAME(), list23A.get(0).getdCCFLNAME());
-		assertEquals(list23AActual.get(0).getiTEMMHNME(), list23A.get(0).getiTEMMHNME());
-		assertEquals(list23AActual.get(0).getiTEMMMKCD(), list23A.get(0).getiTEMMMKCD());
-		assertEquals(list23AActual.get(0).getiTEMMSYCD(), list23A.get(0).getiTEMMSYCD());
-		assertEquals(list23AActual.get(0).getiTEMMTNKMK(), list23A.get(0).getiTEMMTNKMK());
-		assertEquals(list23AActual.get(0).getiTEMMPART(), list23A.get(0).getiTEMMPART());
+		assertEquals(list23AExpected.get(0).getAllpage(), list23A.get(0).getAllpage());
+		assertEquals(list23AExpected.get(0).getiTEMMSTOK(), list23A.get(0).getiTEMMSTOK());
+		assertEquals(list23AExpected.get(0).getiTEMMSKCD(), list23A.get(0).getiTEMMSKCD());
+		assertEquals(list23AExpected.get(0).getiTEMMTNTO(), list23A.get(0).getiTEMMTNTO());
+		assertEquals(list23AExpected.get(0).geteMPFLEMPNM(), list23A.get(0).geteMPFLEMPNM());
+		assertEquals(list23AExpected.get(0).getdCCFLNAME(), list23A.get(0).getdCCFLNAME());
+		assertEquals(list23AExpected.get(0).getiTEMMHNME(), list23A.get(0).getiTEMMHNME());
+		assertEquals(list23AExpected.get(0).getiTEMMMKCD(), list23A.get(0).getiTEMMMKCD());
+		assertEquals(list23AExpected.get(0).getiTEMMSYCD(), list23A.get(0).getiTEMMSYCD());
+		assertEquals(list23AExpected.get(0).getiTEMMTNKMK(), list23A.get(0).getiTEMMTNKMK());
+		assertEquals(list23AExpected.get(0).getiTEMMPART(), list23A.get(0).getiTEMMPART());
 		// test if connection is connected
 		assertEquals(true, checkConnection);
 	}
@@ -413,7 +417,7 @@ public class StokDAOTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testUpdateInfoStok() throws Exception {
+	public void test5UpdateInfoStok() throws Exception {
 		assertEquals(false, testUpdate1);
 		assertEquals(false, testUpdate2);
 		assertEquals(true, testUpdate3);
@@ -433,7 +437,7 @@ public class StokDAOTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testIsExistITEMMSKCD() throws Exception {
+	public void test6IsExistITEMMSKCD() throws Exception {
 		assertEquals(false, testExist1);
 		assertEquals(false, testExist2);
 		assertEquals(true, testExist3);

@@ -24,6 +24,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ｊ１／ＪＲ情報簡易修正</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
 <link
 	href="http://cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.css"
 	rel="stylesheet">
@@ -49,7 +50,7 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin-top: 10px;">
 		<div class="body">
 			<div class="main-form col-sm-12">
 				<div class="top-text col-sm-12">
@@ -88,14 +89,14 @@
 				</div>
 				<html:form action="/search-J1JR" styleClass="form-group" method="post">
 				<div class="top-message col-sm-12">
-					<label for="message" id="message" style="color: red;margin-left: 50px;"><html:errors property="nullStokError"/></label>
-					<label for="message" style="color: red;margin-left: 50px;">
+					<label for="message" id="message" style="color: red;"><html:errors property="nullStokError"/></label>
+					<label for="message" style="color: red;">
 						<html:errors property="reloadPageError"/>
 						<html:errors property="updateSuccess"/>
 						<html:errors property="updateHalfSizeError"/>
-						<html:errors property="existError"/>
 						<html:errors property="specialCharError"/>
 					</label>
+					<label for="message" id="message2" style="color: red;"><html:errors property="nullUpdateError"/><html:errors property="existError"/></label>
 				</div>
 				<div class="body-filter col-sm-12" style="height: 80px;">
 					<div style="margin: 24px 0 0 50px;">
@@ -128,7 +129,7 @@
 						</button>
 						<label for="message" class="my-label2">べ ー ジ</label> 
 						<html:text styleId="pageid" property="pagenum" style="margin: 0 10px 0 10px; width: 50px;"></html:text>
-						<button class="m-btn m-btn-success my-btn">表示</button>
+						<button id="searchPagebtn" class="m-btn m-btn-success my-btn">表示</button>
 					</div>
 				</div>
 				</html:form>
@@ -137,8 +138,8 @@
 					<div>
 						<html:form styleId="infoForm" action="/update-J1JR" styleClass="form-group" method="post">
 							<div class="body-main col-sm-12">
-								<div style="margin: 24px 0 0 50px;">
-										<table id="table">
+								<div class="col-sm-12">
+										<table id="table" style="margin-top: 15px;">
 												<tr>
 													<td class="body-main-label">
 														<div class="body-main-label-text"><label for="message" class="my-label2"> ストック・ナンバー</label></div>
@@ -147,7 +148,7 @@
 														<html:text name="st" property="iTEMMSTOK" styleClass="form-control" style="width: 20%;" readonly="true" maxlength="14"></html:text>
 													</td>
 												</tr>
-												<tr>
+												<tr id="errorLine">
 													<td class="body-main-label">
 														<div class="body-main-label-text"><label for="message" class="my-label2">主保管地コード</label></div>
 													</td>
@@ -251,7 +252,7 @@
 								<div style="margin: 10px 0 0 69%;">
 									<button class="m-btn m-btn-success my-btn" style="width: 69px;height: 34px;margin-left: 10px;">更新(U)</button>
 									<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;margin-left: 10px;" value="クリアー(R)"/>
-									<a onclick="exportF()" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;">エクスポート(E)</a>
+									<a onclick="exportF()" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;text-decoration: none;">エクスポート(E)</a>
 									<a style="display: none" id="downloadLink"></a>
 								</div>
 							</div>
@@ -266,12 +267,12 @@
 </body>
 <script>
 	var iTEMMSTOKtextbox = $("#iTEMMSTOKtextbox").val();
-	function simulateClick(){
+	/*function simulateClick(){
 		$("#submitSearch").click();
 	};
 	if(iTEMMSTOKtextbox == ""){
 		setTimeout(simulateClick, 6000);
-	}
+	}*/
 	var allpage = parseInt($("#allpage").text());
 	var pageid = parseInt($("#pageid").val());
 	if(allpage.toString()  == "NaN"){
@@ -304,12 +305,34 @@
 	$("#pageid").attr("min","0");
 	$( document ).ready(function() {
 		$("#next").click(function(){
+			if(pageid > allpage){
+				$("#pageid").val(allpage);
+			}
+			if(pageid == 0){
+				$("#pageid").val(1);
+			}
 		    var pageid = parseInt($('#pageid').val(), 10);
 		    $("#pageid").val(pageid+1);
 		});
 		$("#back").click(function(){
+			if(pageid > allpage){
+				$("#pageid").val(allpage);
+			}
+			if(pageid == 0){
+				$("#pageid").val(1);
+			}
 		    var pageid = parseInt($('#pageid').val(), 10);
 		    $("#pageid").val(pageid-1);
+		});
+		$("#searchPagebtn").click(function(){
+			var allpage = parseInt($("#allpage").text());
+			var pageid = parseInt($("#pageid").val());
+			if(pageid > allpage){
+				$("#pageid").val(allpage);
+			}
+			if(pageid == 0){
+				$("#pageid").val(1);
+			}
 		});
 	});
 </script>
@@ -322,6 +345,11 @@
 		}
 		if(message.length > 0){
 			x.style.display = 'none';
+		}
+		
+		var message2 = $("#message2").text();
+		if(message2.length > 0){
+			$("#errorLine").attr('style','background-color: red;');
 		}
 	});
 </script>

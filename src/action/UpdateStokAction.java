@@ -24,10 +24,8 @@ import model.bo.StokBO;
  *
  * Copyright
  * 
- * Modification Logs:
- * DATE				AUTHOR			DECRIPTION
- * -------------------------------------------
- * 22/05/2017		TinLQ			Create
+ * Modification Logs: DATE AUTHOR DECRIPTION
+ * ------------------------------------------- 22/05/2017 TinLQ Create
  */
 public class UpdateStokAction extends Action {
 
@@ -52,6 +50,15 @@ public class UpdateStokAction extends Action {
 			String iTEMMSTOK = stokForm.getiTEMMSTOK();
 			// call iTEMMSKCD from stokForm
 			String iTEMMSKCD = stokForm.getiTEMMSKCD();
+			try {
+				iTEMMSKCD = CheckData.chuanHoa(iTEMMSKCD);
+			} catch (Exception e) {
+				// add message error
+				actionErrors.add("reloadPageError", new ActionMessage("error.update.reloadPageError"));
+				saveErrors(request, actionErrors);
+				// return to updateJ1JR.jsp
+				return mapping.findForward("upDate");
+			}
 			// check special character or not
 			boolean checkSpeChar = false;
 			try {
@@ -104,6 +111,14 @@ public class UpdateStokAction extends Action {
 						saveErrors(request, actionErrors);
 						// return to error page
 						return mapping.findForward("loi");
+					}
+					// check value of item iTEMMSKCD
+					if ("".equals(iTEMMSKCD)) {
+						// add message error
+						actionErrors.add("nullUpdateError", new ActionMessage("error.update.nullValue"));
+						saveErrors(request, actionErrors);
+						// return to updateJ1JR.jsp
+						return mapping.findForward("upDate");
 					}
 					// check exist iTEMMSKCD to update
 					if (checkExist) {

@@ -28,10 +28,8 @@ import model.bo.StokBO;
  *
  * Copyright
  * 
- * Modification Logs:
- * DATE				AUTHOR			DECRIPTION
- * -------------------------------------------
- * 22/05/2017		TinLQ			Create
+ * Modification Logs: DATE AUTHOR DECRIPTION
+ * ------------------------------------------- 22/05/2017 TinLQ Create
  */
 public class GetInfoStokAction extends Action {
 
@@ -59,6 +57,10 @@ public class GetInfoStokAction extends Action {
 			Stok stok;
 			// call iTEMMSTOK from stokForm
 			String iTEMMSTOK = stokForm.getiTEMMSTOK();
+			// check iTEMMSTOK if null
+			if (iTEMMSTOK == null) {
+				iTEMMSTOK = "";
+			}
 			// try catch to catch error while trim
 			try {
 				// check null and "" to trim
@@ -67,7 +69,6 @@ public class GetInfoStokAction extends Action {
 					iTEMMSTOK = CheckData.chuanHoa(iTEMMSTOK);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
 				// add message error
 				actionErrors.add("reloadPageError", new ActionMessage("error.update.reloadPageError"));
 				saveErrors(request, actionErrors);
@@ -108,10 +109,16 @@ public class GetInfoStokAction extends Action {
 				actionErrors.add("nullStokError", new ActionMessage("error.getStok.nullValue"));
 				saveErrors(request, actionErrors);
 			}
+			String mYITEMMSTOK = null;
+			try {
+				mYITEMMSTOK = stokForm.getListStok().get(0).getiTEMMSTOK();
+			} catch (Exception e) {
+				return mapping.findForward("search");
+			}
 			// try catch to get message from throw Exception
 			try {
 				// check iTEMMMKCD
-				stok = stokBO.checkITEMMMKCD(iTEMMSTOK);
+				stok = stokBO.checkITEMMMKCD(mYITEMMSTOK);
 				// set element mAKERDATA from Stok Bean to form
 				stokForm.setmAKERDATA(stok.getmAKERDATA());
 			} catch (Exception e) {
@@ -120,7 +127,7 @@ public class GetInfoStokAction extends Action {
 			// try catch to get message from throw Exception
 			try {
 				// check iTEMMSYCD
-				stok = stokBO.checkITEMMSYCD(iTEMMSTOK);
+				stok = stokBO.checkITEMMSYCD(mYITEMMSTOK);
 				// set element cARNMNAME from Stok Bean to form
 				stokForm.setcARNMNAME(stok.getcARNMNAME());
 			} catch (Exception e) {

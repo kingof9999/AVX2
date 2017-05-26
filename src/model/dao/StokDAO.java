@@ -166,7 +166,7 @@ public class StokDAO {
 			// check exist in database
 			if (rs.next()) {
 				// set MAKER_DATA to Stok(mAKERDATA) Bean
-				stok.setmAKERDATA(rs.getString("MAKER_DATA"));
+				stok.setmAKERDATA(rs.getString("MAKER_DATA").trim());
 			} else {
 				// set "æŒ‡å®šç„¡ã�—" to Stok(mAKERDATA) Bean
 				stok.setmAKERDATA("指定無し");
@@ -208,7 +208,7 @@ public class StokDAO {
 			// check exist in database
 			if (rs.next()) {
 				// set MAKER_DATA to Stok(mAKERDATA) Bean
-				stok.setcARNMNAME(rs.getString("CARNM_NAME"));
+				stok.setcARNMNAME(rs.getString("CARNM_NAME").trim());
 			} else {
 				// set "æŒ‡å®šç„¡ã�—" to Stok(mAKERDATA) Bean
 				stok.setcARNMNAME("指定無し");

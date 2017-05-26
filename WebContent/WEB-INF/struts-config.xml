@@ -14,7 +14,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<forward name="thanhCong" path="/updateJ1JR.jsp"/>
 			<forward name="search" path="/search-J1JR.do?iTEMMSTOK="/>
 		</action>
-		<action input="/updateJ1JR.jsp" path="/update-J1JR" name="stokForm" 
+		<action path="/update-J1JR" name="stokForm" 
 			scope="request" type="action.UpdateStokAction">
 			
 			<forward name="upDate" path="/search-J1JR.do"/>
