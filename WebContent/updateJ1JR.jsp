@@ -265,91 +265,99 @@
 		</div>
 	</div>
 </body>
-<script>
+<script>	
 	var iTEMMSTOKtextbox = $("#iTEMMSTOKtextbox").val();
-	/*function simulateClick(){
-		$("#submitSearch").click();
-	};
-	if(iTEMMSTOKtextbox == ""){
-		setTimeout(simulateClick, 6000);
-	}*/
 	var allpage = parseInt($("#allpage").text());
 	var pageid = parseInt($("#pageid").val());
-	if(allpage.toString()  == "NaN"){
+	if (allpage.toString() == "NaN") {
 		allpage = 0;
 	}
-	if(allpage.toString()  == 0){
+	if (allpage.toString() == 0) {
 		$("#setallpage").text(0);
-	}else{
+	} else {
 		$("#setallpage").text(allpage);
 	}
-	if(pageid == 1){
-		$("#back").attr('disabled','disabled');
+	if (pageid == 1) {
+		$("#back").attr('disabled', 'disabled');
 	}
-	if(allpage == pageid){
-		$("#next").attr('disabled','disabled');
+	if (allpage == pageid) {
+		$("#next").attr('disabled', 'disabled');
 	}
-	/*if(pageid > allpage){
-		pageid = pageid - 1;
-		$("#pageid").val(pageid);
-		$("#submitSearch").click();
-	}
-	if(pageid == 0){
-		pageid = pageid + 1;
-		$("#pageid").val(pageid);
-		$("#submitSearch").click();
-	}*/
 	$("#setpageid").text(pageid);
 	$("#iTEMMSTOKtextbox").focus();
-	$("#pageid").attr("type","number");
-	$("#pageid").attr("min","0");
-	$( document ).ready(function() {
-		$("#next").click(function(){
-			if(pageid > allpage){
+	$("#pageid").attr("type", "number");
+	$("#pageid").attr("min", "0");
+	$("#pageid").attr("max", "" + allpage + "");
+	$(document).ready(function() {
+		$("#next").click(function() {
+			if (pageid > allpage) {
 				$("#pageid").val(allpage);
 			}
-			if(pageid == 0){
+			if (pageid == 0) {
 				$("#pageid").val(1);
 			}
-		    var pageid = parseInt($('#pageid').val(), 10);
-		    $("#pageid").val(pageid+1);
+			var pageid = parseInt($('#pageid').val(), 10);
+			$("#pageid").val(pageid + 1);
 		});
-		$("#back").click(function(){
-			if(pageid > allpage){
+		$("#back").click(function() {
+			if (pageid > allpage) {
 				$("#pageid").val(allpage);
 			}
-			if(pageid == 0){
+			if (pageid == 0) {
 				$("#pageid").val(1);
 			}
-		    var pageid = parseInt($('#pageid').val(), 10);
-		    $("#pageid").val(pageid-1);
+			var pageid = parseInt($('#pageid').val(), 10);
+			$("#pageid").val(pageid - 1);
 		});
-		$("#searchPagebtn").click(function(){
+		$("#pageid").keypress(function(e) {
+			if (e.keyCode == 13) {
+				var allpage = parseInt($("#allpage").text());
+				var pageid = parseInt($("#pageid").val());
+				if (pageid > allpage) {
+					$("#pageid").val(allpage);
+				}
+				if (pageid == 0) {
+					$("#pageid").val(1);
+				}
+				if (String(pageid) == 'NaN') {
+					var setpageid = $("#setpageid").text();
+					$("#pageid").val(setpageid);
+				}
+			}
+		});
+		$("#searchPagebtn,#next,#back").click(function() {
 			var allpage = parseInt($("#allpage").text());
 			var pageid = parseInt($("#pageid").val());
-			if(pageid > allpage){
+			if (pageid > allpage) {
 				$("#pageid").val(allpage);
 			}
-			if(pageid == 0){
+			if (pageid == 0) {
 				$("#pageid").val(1);
 			}
+			if (String(pageid) == 'NaN') {
+				var setpageid = $("#setpageid").text();
+				$("#pageid").val(setpageid);
+			}
+		});
+		$("#submitSearch").click(function() {
+			$("#pageid").val(1);
 		});
 	});
 </script>
 <script>
-	$( document ).ready(function() {
+	$(document).ready(function() {
 		var message = $("#message").text();
 		var x = document.getElementById('infoForm');
-		if(message.length == 0){
+		if (message.length == 0) {
 			x.style.display = 'block';
 		}
-		if(message.length > 0){
+		if (message.length > 0) {
 			x.style.display = 'none';
 		}
-		
+
 		var message2 = $("#message2").text();
-		if(message2.length > 0){
-			$("#errorLine").attr('style','background-color: red;');
+		if (message2.length > 0) {
+			$("#errorLine").attr('style', 'background-color: red;');
 		}
 	});
 </script>
