@@ -61,7 +61,7 @@
 						<label for="message" class="my-label">Ｊ１／ＪＲ情報簡易修正</label>
 					</div>
 					<div class="col-sm-3" style="float: left;">
-						<label for="message" id="clock" style="padding-left: 65%;" class="my-label"></label>
+						<label for="message" id="clock" style="padding-left: 60%;" class="my-label"></label>
 						<script type="text/javascript"> function refrClock() {
 								var d=new Date();
 								var s=d.getSeconds();
@@ -72,7 +72,7 @@
 								var month=d.getMonth();
 								var year=d.getFullYear();
 								var days=new Array("Sunday,","Monday,","Tuesday,","Wednesday,","Thursday,","Friday,","Saturday,");
-								var months=new Array("1","2","3","4","5","6","7","8","9","10","11","12"); var am_pm;
+								var months=new Array("01","02","03","04","05","06","07","08","09","10","11","12"); var am_pm;
 									if (s<10) {s="0" + s}
 									if (m<10) {m="0" + m}
 									if (h>12){
@@ -89,14 +89,14 @@
 				</div>
 				<html:form action="/search-J1JR" styleClass="form-group" method="post">
 				<div class="top-message col-sm-12">
-					<label for="message" id="message" style="color: red;"><html:errors property="nullStokError"/></label>
-					<label for="message" style="color: red;">
+					<label for="message" id="message"><html:errors property="nullStokError"/></label>
+					<label for="message">
 						<html:errors property="reloadPageError"/>
 						<html:errors property="updateSuccess"/>
 						<html:errors property="updateHalfSizeError"/>
 						<html:errors property="specialCharError"/>
 					</label>
-					<label for="message" id="message2" style="color: red;"><html:errors property="nullUpdateError"/><html:errors property="existError"/></label>
+					<label for="message" id="message2"><html:errors property="nullUpdateError"/><html:errors property="existError"/></label>
 				</div>
 				<div class="body-filter col-sm-12" style="height: 80px;">
 					<div style="margin: 24px 0 0 50px;">
@@ -106,16 +106,16 @@
 									<div class="body-main-label-text"><label for="message" class="my-label2">ストック・ナンバー</label></div>
 								</td>
 								<td style="padding-left: 20px;width: 87%;">
-									<html:text styleId="iTEMMSTOKtextbox" property="iTEMMSTOK" styleClass="form-control" style="width: 37%;" maxlength="13"></html:text>
+									<html:text tabindex="1" styleId="iTEMMSTOKtextbox" property="iTEMMSTOK" styleClass="form-control" style="width: 37%;" maxlength="13"></html:text>
 								</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<div class="body-button col-sm-12">
-					<div style="margin: 10px 0 0 83%;">
-						<html:submit styleId="submitSearch" styleClass="m-btn m-btn-success my-btn" style="width: 69px;height: 34px;">検索(S)</html:submit>
-						<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;" onclick="location.href='/AVX2/search-J1JR.do';" value="キャンセル(C)"/>
+					<div style="margin: 10px 0 0 76%;">
+						<html:submit tabindex="2" styleId="submitSearch" styleClass="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;">検索(S)</html:submit>
+						<input tabindex="3" type="reset" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;" onclick="location.href='/AVX2/search-J1JR.do';" value="キャンセル(C)"/>
 					</div>
 				</div>
 				<div class="body-main-top col-sm-12">
@@ -153,7 +153,7 @@
 														<div class="body-main-label-text"><label for="message" class="my-label2">主保管地コード</label></div>
 													</td>
 													<td style="padding-left: 20px;width: 87%;">
-														<html:text name="st" property="iTEMMSKCD" styleClass="form-control" style="width: 5%;" maxlength="2"></html:text>
+														<html:text tabindex="4" styleId="iTEMMSKCD" name="st" property="iTEMMSKCD" styleClass="form-control" style="width: 5%;" maxlength="2"></html:text>
 													</td>
 												</tr>
 												<tr>
@@ -249,10 +249,10 @@
 								</div>
 							</div>
 							<div class="body-button col-sm-12">
-								<div style="margin: 10px 0 0 69%;">
-									<button class="m-btn m-btn-success my-btn" style="width: 69px;height: 34px;margin-left: 10px;">更新(U)</button>
-									<input type="reset" class="m-btn m-btn-success my-btn" style="width: 110px;height: 34px;margin-left: 10px;" value="クリアー(R)"/>
-									<a onclick="exportF()" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;text-decoration: none;">エクスポート(E)</a>
+								<div style="margin: 10px 0 0 64%;">
+									<button tabindex="5" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;">更新(U)</button>
+									<input tabindex="6" type="reset" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;" value="クリアー(R)"/>
+									<a tabindex="7" onclick="exportF()" class="m-btn m-btn-success my-btn" style="width: 120px;height: 34px;margin-left: 10px;text-decoration: none;">エクスポート(E)</a>
 									<a style="display: none" id="downloadLink"></a>
 								</div>
 							</div>
@@ -279,12 +279,13 @@
 	}
 	if (pageid == 1) {
 		$("#back").attr('disabled', 'disabled');
+		$("#back").attr('style', 'background-color:#8c320d');
 	}
 	if (allpage == pageid) {
 		$("#next").attr('disabled', 'disabled');
+		$("#next").attr('style', 'background-color:#8c320d');
 	}
 	$("#setpageid").text(pageid);
-	$("#iTEMMSTOKtextbox").focus();
 	$("#pageid").attr("type", "number");
 	$("#pageid").attr("min", "0");
 	$("#pageid").attr("max", "" + allpage + "");
@@ -357,7 +358,10 @@
 
 		var message2 = $("#message2").text();
 		if (message2.length > 0) {
+			$("#iTEMMSKCD").focus();
 			$("#errorLine").attr('style', 'background-color: red;');
+		}else{
+			$("#iTEMMSTOKtextbox").focus();
 		}
 	});
 </script>

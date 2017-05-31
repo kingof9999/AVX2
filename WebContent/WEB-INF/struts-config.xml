@@ -19,7 +19,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			
 			<forward name="upDate" path="/search-J1JR.do"/>
 			<forward name="loi" path="/error.jsp"/>
-			<forward name="thanhCong" path="/search-J1JR.do"/>
+			<forward name="thanhCong" path="/search-J1JR.do?iTEMMSTOK="/>
 		</action>
 	</action-mappings>
 	<message-resources parameter="action.ApplicationResources" />
